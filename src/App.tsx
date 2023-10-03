@@ -8,6 +8,7 @@ import {
 } from "@chakra-ui/react"
 import { ColorModeSwitcher } from "./ColorModeSwitcher"
 import { ExerciseMaxInput } from "./components/exerciseMaxInput"
+import { PaceMaxInput } from './components/paceMaxInput';
 
 export const App: React.FC = () => (
   <ChakraProvider theme={theme}>
@@ -18,6 +19,7 @@ export const App: React.FC = () => (
           <ExerciseMaxInput exercise={"Pushups"} maxValue={100} />
           <ExerciseMaxInput exercise={"Situps"} maxValue={100} />
           <ExerciseMaxInput exercise={"Pullups"} maxValue={100} />
+          <PaceMaxInput exercise={"1.5 Mile Run"} />
         </VStack>
       </Grid>
     </Box>

@@ -13,11 +13,9 @@ interface ExerciseMaxInputProps{
 
 export const ExerciseMaxInput: React.FC<ExerciseMaxInputProps> = ({exercise, maxValue}) => {
   return (
-    <Box>
-      <h2>
-        {exercise}
-      </h2>
-      <NumberInput step={1} defaultValue={0} min={0} max={maxValue}>
+    <Box display={"flex"} alignItems="center">
+      <h2>{exercise}</h2>
+      <NumberInput step={1} defaultValue={0} min={0} max={maxValue} paddingLeft = {5}>
         <NumberInputField />
         <NumberInputStepper>
           <NumberIncrementStepper />
