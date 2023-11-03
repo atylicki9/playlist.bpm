@@ -1,5 +1,5 @@
 import {
-  Box, Heading
+  Box, Heading, Text
 } from "@chakra-ui/react";
 import React from 'react';
 
@@ -10,8 +10,8 @@ export const InfoBox = () => {
   return (
     <Box display={"inline"} alignItems="center">
       <Heading fontWeight={"bold"}>{title}</Heading>
-      <p>{subtitleOne}</p>
-      <p>{subtitleTwo}</p>
+      <Text>{subtitleOne}</Text>
+      <Text>{subtitleTwo}</Text>
     </Box>
   );
 };

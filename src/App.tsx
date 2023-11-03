@@ -11,6 +11,7 @@ import { ColorModeSwitcher } from "./ColorModeSwitcher"
 import { ExerciseMaxInput } from "./components/exerciseMaxInput"
 import { PaceMaxInput } from './components/paceMaxInput';
 import { InfoBox } from './components/infoBox';
+import { DisclaimerBox } from './components/disclaimerBox';
 
 export const App: React.FC = () => (
   <ChakraProvider theme={theme}>
@@ -28,6 +29,7 @@ export const App: React.FC = () => (
             <h1>Submit</h1>
           </Button>
         </VStack>
+        <DisclaimerBox/>  
       </Grid>
     </Box>
   </ChakraProvider>
