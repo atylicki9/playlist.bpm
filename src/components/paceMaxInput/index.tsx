@@ -15,7 +15,7 @@ import {
   export const PaceMaxInput: React.FC<PaceMaxInputProps> = ({exercise}) => {
     return (
       <Box display={"flex"} alignItems="center">
-        <h2>{exercise}</h2>
+        <h2>{exercise} (minutes)</h2>
         <NumberInput step={.25} defaultValue={10} min={0} max={20} paddingLeft={5}>
           <NumberInputField />
           <NumberInputStepper>
