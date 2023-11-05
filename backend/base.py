@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS, cross_origin
 
 # to run>
 # in backend directory: source env/bin/activate
@@ -6,11 +7,11 @@ from flask import Flask
 
 api = Flask(__name__)
 
-@api.route('/ping')
+@api.route('/ping', methods = ['GET'])
+@cross_origin(origin='*')
 def ping():
-    response_body = {
-        "about" :"Workout Generator API is Online.",
-        "color" :"Green"
+    response = {
+        "about" :"Workout Generator API is Online."
     }
 
-    return ping
+    return response
