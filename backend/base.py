@@ -7,9 +7,10 @@ from flask import Flask
 api = Flask(__name__)
 
 @api.route('/ping')
-def my_profile():
+def ping():
     response_body = {
-        "about" :"Workout Generator API is Online."
+        "about" :"Workout Generator API is Online.",
+        "color" :"Green"
     }
 
-    return response_body
+    return ping
