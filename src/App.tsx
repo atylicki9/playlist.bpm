@@ -15,8 +15,7 @@ import { SubmitButton } from './components/submitButton';
 
 export const App: React.FC = () => {
 
-
-
+  
 
   return (
     <ChakraProvider theme={theme}>
