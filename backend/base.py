@@ -1,4 +1,5 @@
-from flask import Flask
+import workoutCalculations
+from flask import Flask, request, jsonify, abort 
 from flask_cors import CORS, cross_origin
 
 # to run>
@@ -7,11 +8,17 @@ from flask_cors import CORS, cross_origin
 
 api = Flask(__name__)
 
-@api.route('/ping', methods = ['GET'])
+@api.route('/workouts', methods = ['POST'])
 @cross_origin(origin='*')
-def ping():
-    response = {
-        "about" :"Workout Generator API is Online."
+def workouts():
+    if not request.json in request.json:
+        abort(400)
+    workouts = {
+        'pushups': workoutCalculations.calculatePushups(request.json['pushupsMax']),
+        'situps': workoutCalculations.calculateSitups(request.json['situpsMax']),
+        'pullups': workoutCalculations.calculatePullups(request.json['pullupsMax']),
+        'run': workoutCalculations.calculateRun(request.json['runTime']),
+        'swim': workoutCalculations.calculateSwim(request.json['swimTime'])
     }
+    return jsonify({'workouts': workouts}), 201
 
-    return response

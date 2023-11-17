@@ -2,12 +2,16 @@ import {
   Button
 } from "@chakra-ui/react";
 import axios from "axios";
-import React from 'react';
 
-const API_PING_ENDPOINT: string = 'http://127.0.0.1:5000/ping'
+const API_WORKOUTS_ENDPOINT: string = 'http://127.0.0.1:5000/workouts'
 
  const callWorkoutApi = () => {
-  axios.get(API_PING_ENDPOINT, {
+  axios.post(API_WORKOUTS_ENDPOINT, {
+    pushupsMax: 20,
+    situpsMax: 20, 
+    pullupsMax: 20,
+    runTime: 10.5,
+    swimTime: 10.5
   })
   .then((response) => {
     console.log(response);
