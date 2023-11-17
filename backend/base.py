@@ -11,8 +11,6 @@ api = Flask(__name__)
 @api.route('/workouts', methods = ['POST'])
 @cross_origin(origin='*')
 def workouts():
-    if not request.json in request.json:
-        abort(400)
     workouts = {
         'pushups': workoutCalculations.calculatePushups(request.json['pushupsMax']),
         'situps': workoutCalculations.calculateSitups(request.json['situpsMax']),
