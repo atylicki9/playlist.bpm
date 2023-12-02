@@ -4,7 +4,6 @@ import {
   NumberIncrementStepper, 
   NumberInput, NumberInputField, 
   NumberInputStepper} from "@chakra-ui/react";
-import { setMaxListeners } from "process";
 import React from 'react';
 
 interface ExerciseMaxInputProps{
@@ -23,6 +22,7 @@ export const ExerciseMaxInput: React.FC<ExerciseMaxInputProps> = ({exercise, max
         defaultValue={0} 
         min={0} max={maxValue} 
         paddingLeft={5} 
+        // pass up value to parent component so that we can set state there 
         onChange={(valueString) => setMaxReps(parseInt(valueString)) }>
         <NumberInputField />
         <NumberInputStepper>
