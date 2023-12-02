@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ChakraProvider,
   Box,
@@ -14,8 +14,11 @@ import { DisclaimerBox } from './components/disclaimerBox';
 import { SubmitButton } from './components/submitButton';
 
 export const App: React.FC = () => {
-
-  
+  const [pushupsMax, setPushupsMax] = useState(0)
+  const [situpsMax, setSitupsMax] = useState(0)
+  const [pullupsMax, setPullupsMax] = useState(0)
+  const [runPace, setRunPace] = useState(0)
+  const [swimPace, setSwimPace] = useState(0)
 
   return (
     <ChakraProvider theme={theme}>
@@ -24,12 +27,12 @@ export const App: React.FC = () => {
           <ColorModeSwitcher justifySelf="flex-end" />
           <VStack spacing={8}>
             <InfoBox/>
-            <ExerciseMaxInput exercise={"Pushups"} maxValue={100} />
-            <ExerciseMaxInput exercise={"Situps"} maxValue={100} />
-            <ExerciseMaxInput exercise={"Pullups"} maxValue={100} />
-            <PaceMaxInput exercise={"1.5 Mile Run"} />
-            <PaceMaxInput exercise={"500 Yard Swim"} />
-            <SubmitButton/>
+            <ExerciseMaxInput exercise={"Pushups"} maxValue={100} setMaxReps={setPushupsMax}/>
+            <ExerciseMaxInput exercise={"Situps"} maxValue={100} setMaxReps={setSitupsMax}/>
+            <ExerciseMaxInput exercise={"Pullups"} maxValue={100} setMaxReps={setPullupsMax}/>
+            <PaceMaxInput exercise={"1.5 Mile Run"} setPace={setRunPace}/>
+            <PaceMaxInput exercise={"500 Yard Swim"} setPace={setSwimPace}/>
+            <SubmitButton pushups={pushupsMax} situps={situpsMax} pullups={pullupsMax} runTime={runPace} swimTime={swimPace}/>
           </VStack>
           <DisclaimerBox/>  
         </Grid>
