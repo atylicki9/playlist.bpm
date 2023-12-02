@@ -12,8 +12,8 @@ api = Flask(__name__)
 @cross_origin(origin='*')
 def workouts():
     workouts = {
-        'pushups': workoutCalculations.calculatePushups(request.json['pushupsMax']),
-        'situps': workoutCalculations.calculateSitups(request.json['situpsMax']),
+        'pushups': workoutCalculations.calculatePushupsOrSitups(request.json['pushupsMax']),
+        'situps': workoutCalculations.calculatePushupsOrSitups(request.json['situpsMax']),
         'pullups': workoutCalculations.calculatePullups(request.json['pullupsMax']),
         'run': workoutCalculations.calculateRun(request.json['runTime']),
         'swim': workoutCalculations.calculateSwim(request.json['swimTime'])
