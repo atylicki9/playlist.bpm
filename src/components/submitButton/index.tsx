@@ -30,7 +30,7 @@ const callWorkoutApi: any = (pushups: number, situps: number, pullups: number, r
 
 export const SubmitButton: React.FC<SubmitButtonProps> = ({pushups, situps, pullups, runTime, swimTime}) => {
   return (
-    <Button onClick={callWorkoutApi(pushups, situps, pullups, runTime, swimTime)}>
+    <Button onClick={e => callWorkoutApi(pushups, situps, pullups, runTime, swimTime)}>
       <h1>Submit</h1>
     </Button>
   );
