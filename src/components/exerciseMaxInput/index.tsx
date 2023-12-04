@@ -9,7 +9,7 @@ import React from 'react';
 interface ExerciseMaxInputProps{
   exercise: string;
   maxValue: number;
-  setMaxReps(value: number): void
+  setMaxReps(value: number): void;
 }
 
 export const ExerciseMaxInput: React.FC<ExerciseMaxInputProps> = ({exercise, maxValue, setMaxReps}) => {

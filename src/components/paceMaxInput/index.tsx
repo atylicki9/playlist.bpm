@@ -10,7 +10,7 @@ import {
   
   interface PaceMaxInputProps{
     exercise: string;
-    setPace(value: number): void
+    setPace(value: number): void;
   }
   
   export const PaceMaxInput: React.FC<PaceMaxInputProps> = ({exercise, setPace}) => {
