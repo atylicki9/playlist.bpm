@@ -1,6 +1,6 @@
 import ExcelJS from 'exceljs';
 
-export async function selectExcelFile(filePath:string, data: string) {
+export async function selectExcelFile(filePath:string) {
     // Open the existing Excel file
     const workbook = new ExcelJS.Workbook();
     await workbook.xlsx.readFile(filePath);

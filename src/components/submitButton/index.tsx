@@ -2,8 +2,9 @@ import {
   Button
 } from "@chakra-ui/react";
 import axios from "axios";
+import { API_WORKOUTS_ENDPOINT} from "../../common/constants";
 
-const API_WORKOUTS_ENDPOINT: string = 'http://127.0.0.1:5000/workouts'
+import { generateWorkoutFile } from "../../utility/workoutFileUtility";
 
 interface SubmitButtonProps{
   pushups: number;
@@ -13,7 +14,7 @@ interface SubmitButtonProps{
   swimTime: number;
 }
 
-const callWorkoutApi: any = (pushups: number, situps: number, pullups: number, runTime: number, swimTime: number) => {
+const callWorkoutApi = (pushups: number, situps: number, pullups: number, runTime: number, swimTime: number) => {
   axios.post(API_WORKOUTS_ENDPOINT, {
     pushupsMax: pushups,
     situpsMax: situps, 
@@ -23,6 +24,7 @@ const callWorkoutApi: any = (pushups: number, situps: number, pullups: number, r
   })
   .then((response) => {
     console.log(response);
+    generateWorkoutFile(response)
   }, (error) => {
     console.log(error);
   });
