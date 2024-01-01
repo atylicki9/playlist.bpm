@@ -4,10 +4,10 @@ import { saveExcelFile, selectExcelFile, updateExcelCell } from "./excelUtility"
 
 
 export async function generateWorkoutFile(response: AxiosResponse<any, any>){ // make this not any
-    const workbook = selectExcelFile(EXCEL_SHEET_PATH);
+     const workbook = selectExcelFile(EXCEL_SHEET_PATH);
   
-    updateExcelCell(await workbook, response.data("pushups"), PUSHUPS_REPS_CELL)
+    updateExcelCell(await workbook, response.data.workouts.pushups, PUSHUPS_REPS_CELL)
   
-    saveExcelFile(await workbook, EXCEL_SHEET_PATH)
+    saveExcelFile( await workbook, EXCEL_SHEET_PATH)
   }
   

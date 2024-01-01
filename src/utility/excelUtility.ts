@@ -3,9 +3,11 @@ import ExcelJS from 'exceljs';
 export async function selectExcelFile(filePath:string) {
     // Open the existing Excel file
     const workbook = new ExcelJS.Workbook();
-    await workbook.xlsx.readFile(filePath);
+    await workbook.xlsx.readFile(filePath)
+    .then((workbook) => {return workbook})
+    .catch((error: any) => {console.log(error)})
 
-    return workbook;
+    return workbook
 }
 
 export async function saveExcelFile(workbook: ExcelJS.Workbook, filePath:string) {
