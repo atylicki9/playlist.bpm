@@ -1,34 +1,43 @@
-import {
-    Box,
-    NumberDecrementStepper,
-    NumberIncrementStepper,
-    NumberInput,
-    NumberInputField,
-    NumberInputStepper
-  } from "@chakra-ui/react";
-  import React from 'react';
-  
-  interface PaceMaxInputProps{
-    exercise: string;
-    setPace(value: number): void;
-  }
-  
-  export const PaceMaxInput: React.FC<PaceMaxInputProps> = ({exercise, setPace}) => {
-    return (
-      <Box display={"flex"} alignItems="center">
-        <h2>{exercise} (minutes)</h2>
-        <NumberInput 
-        step={.25} 
-        defaultValue={10} 
-        min={0} max={20} 
-        paddingLeft={5}
-        onChange={(valueString) => setPace(parseInt(valueString)) }>
-          <NumberInputField />
-          <NumberInputStepper>
-            <NumberIncrementStepper />
-            <NumberDecrementStepper />
-          </NumberInputStepper>
-        </NumberInput>
-      </Box>
-    );
-  };
+import { Box, Slider, SliderFilledTrack, SliderThumb, SliderTrack, SliderMark } from "@chakra-ui/react";
+import React, { useState } from 'react';
+
+interface PaceMaxInputProps{
+  title: string;
+  setValue(value: number): void;
+}
+
+
+export const SliderInput: React.FC<PaceMaxInputProps> = ({title, setValue}) => {
+  const [sliderValue, setSliderValue] = useState(50)
+  return (
+    <Box display={"inline"} alignItems="center" width={"50%"}>
+      <h2>{title}</h2>
+      <Slider
+        marginTop={30}
+        defaultValue={10}
+        min={0}
+        max={300}
+        step={1}
+        onChange={(value) => {
+          setValue(value);
+          setSliderValue(value);
+        }}
+      >
+        <SliderTrack>
+          <SliderFilledTrack />
+        </SliderTrack>
+        <SliderMark
+          value={sliderValue}
+          textAlign='center'
+          color='white'
+          mt='-10'
+          ml='-5'
+          w='12'
+        >
+          {sliderValue}
+        </SliderMark>
+        <SliderThumb />
+      </Slider>
+    </Box>
+  );
+};
