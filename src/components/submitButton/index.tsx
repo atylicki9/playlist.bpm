@@ -2,7 +2,7 @@ import {
   Button
 } from "@chakra-ui/react";
 import axios from "axios";
-import { API_WORKOUTS_ENDPOINT} from "../../common/constants";
+import { API_PLAYLISTS_ENDPOINT } from "../../common/constants";
 
 import { generatePlaylist } from "../../utility/workoutFileUtility";
 
@@ -12,7 +12,7 @@ interface SubmitButtonProps{
 }
 
 const callPlaylistApi = (numberOfSongs: number, tempo: number) => {
-  axios.post(API_WORKOUTS_ENDPOINT, {
+  axios.post(API_PLAYLISTS_ENDPOINT, {
     numberOfSongs: numberOfSongs,
     tempo: tempo, 
   })

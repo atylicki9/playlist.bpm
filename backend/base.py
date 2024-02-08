@@ -1,4 +1,3 @@
-import workoutCalculations
 from flask import Flask, request, jsonify, abort 
 from flask_cors import CORS, cross_origin
 
@@ -8,15 +7,12 @@ from flask_cors import CORS, cross_origin
 
 api = Flask(__name__)
 
-@api.route('/workouts', methods = ['POST'])
+@api.route('/playlists', methods = ['POST'])
 @cross_origin(origin='*')
-def workouts():
-    workouts = {
-        'pushups': workoutCalculations.calculatePushupsOrSitups(request.json['pushupsMax']),
-        'situps': workoutCalculations.calculatePushupsOrSitups(request.json['situpsMax']),
-        'pullups': workoutCalculations.calculatePullups(request.json['pullupsMax']),
-        'run': workoutCalculations.calculateRun(request.json['runTime']),
-        'swim': workoutCalculations.calculateSwim(request.json['swimTime'])
+def playlists():
+    playlistInfo = {
+        'numberOfSongs': request.json['numberOfSongs'],
+        'tempo': request.json['tempo'],
     }
-    return jsonify({'workouts': workouts}), 201
+    return jsonify({'playlistInfo': playlistInfo}), 201
 

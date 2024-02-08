@@ -1,4 +1,4 @@
-export const API_WORKOUTS_ENDPOINT: string = 'http://127.0.0.1:5000/workouts'
+export const API_PLAYLISTS_ENDPOINT: string = 'http://127.0.0.1:5000/playlists'
 
 export const EXCEL_SHEET_PATH: string = "workoutTemplate/Workout Template.xlsx"
 

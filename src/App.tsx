@@ -25,7 +25,7 @@ export const App: React.FC = () => {
           <VStack spacing={8}>
             <InfoBox/>
             <WholeNumberInput title={"Number of Songs"} maxValue={100} setValue={setNumberOfSongs}/>
-            <WholeNumberInput title={"Tempo"} maxValue={100} setValue={setTempo}/>
+            <WholeNumberInput title={"Tempo (BPM)"} maxValue={100} setValue={setTempo}/>
             <SubmitButton numberOfSongs={numberOfSongs} tempo={tempo}/>
           </VStack>
           <DisclaimerBox/>  
