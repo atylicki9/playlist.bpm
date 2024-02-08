@@ -15,10 +15,7 @@ import { SubmitButton } from './components/submitButton';
 
 export const App: React.FC = () => {
   const [numberOfSongs, setNumberOfSongs] = useState(0)
-  const [situpsMax, setSitupsMax] = useState(0)
-  const [pullupsMax, setPullupsMax] = useState(0)
-  const [runPace, setRunPace] = useState(0)
-  const [swimPace, setSwimPace] = useState(0)
+  const [tempo, setTempo] = useState(0)
 
   return (
     <ChakraProvider theme={theme}>
@@ -28,11 +25,8 @@ export const App: React.FC = () => {
           <VStack spacing={8}>
             <InfoBox/>
             <WholeNumberInput title={"Number of Songs"} maxValue={100} setValue={setNumberOfSongs}/>
-            <ExerciseMaxInput exercise={"Situps"} maxValue={100} setMaxReps={setSitupsMax}/>
-            <ExerciseMaxInput exercise={"Pullups"} maxValue={100} setMaxReps={setPullupsMax}/>
-            <PaceMaxInput exercise={"1.5 Mile Run"} setPace={setRunPace}/>
-            <PaceMaxInput exercise={"500 Yard Swim"} setPace={setSwimPace}/>
-            <SubmitButton pushups={pushupsMax} situps={situpsMax} pullups={pullupsMax} runTime={runPace} swimTime={swimPace}/>
+            <WholeNumberInput title={"Tempo"} maxValue={100} setValue={setTempo}/>
+            <SubmitButton numberOfSongs={numberOfSongs} tempo={tempo}/>
           </VStack>
           <DisclaimerBox/>  
         </Grid>

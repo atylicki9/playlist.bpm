@@ -4,35 +4,29 @@ import {
 import axios from "axios";
 import { API_WORKOUTS_ENDPOINT} from "../../common/constants";
 
-import { generateWorkoutFile } from "../../utility/workoutFileUtility";
+import { generatePlaylist } from "../../utility/workoutFileUtility";
 
 interface SubmitButtonProps{
   numberOfSongs: number;
-  situps: number;
-  pullups: number;
-  runTime: number;
-  swimTime: number;
+  tempo: number;
 }
 
-const callWorkoutApi = (numberOfSongs: number, situps: number, pullups: number, runTime: number, swimTime: number) => {
+const callPlaylistApi = (numberOfSongs: number, tempo: number) => {
   axios.post(API_WORKOUTS_ENDPOINT, {
     numberOfSongs: numberOfSongs,
-    situpsMax: situps, 
-    pullupsMax: pullups,
-    runTime: runTime,
-    swimTime: swimTime
+    tempo: tempo, 
   })
   .then((response) => {
     console.log(response);
-    generateWorkoutFile(response)
+    generatePlaylist(response)
   }, (error) => {
     console.log(error);
   });
 }
 
-export const SubmitButton: React.FC<SubmitButtonProps> = ({pushups, situps, pullups, runTime, swimTime}) => {
+export const SubmitButton: React.FC<SubmitButtonProps> = ({numberOfSongs, tempo}) => {
   return (
-    <Button onClick={e => callWorkoutApi(pushups, situps, pullups, runTime, swimTime)}>
+    <Button onClick={e => callPlaylistApi(numberOfSongs, tempo)}>
       <h1>Submit</h1>
     </Button>
   );
