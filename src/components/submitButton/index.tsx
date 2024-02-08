@@ -7,16 +7,16 @@ import { API_WORKOUTS_ENDPOINT} from "../../common/constants";
 import { generateWorkoutFile } from "../../utility/workoutFileUtility";
 
 interface SubmitButtonProps{
-  pushups: number;
+  numberOfSongs: number;
   situps: number;
   pullups: number;
   runTime: number;
   swimTime: number;
 }
 
-const callWorkoutApi = (pushups: number, situps: number, pullups: number, runTime: number, swimTime: number) => {
+const callWorkoutApi = (numberOfSongs: number, situps: number, pullups: number, runTime: number, swimTime: number) => {
   axios.post(API_WORKOUTS_ENDPOINT, {
-    pushupsMax: pushups,
+    numberOfSongs: numberOfSongs,
     situpsMax: situps, 
     pullupsMax: pullups,
     runTime: runTime,

@@ -3,9 +3,9 @@ import {
 } from "@chakra-ui/react";
 import React from 'react';
 
-const title: string = "Navy Seal Workout Generator"
-const subtitleOne: string = "Generate a custom Navy Seal Training Workout Plan to help get you ready for BUD/S!"
-const subtitleTwo: string = "Input your max reps/times for the following workouts and click 'submit.'"
+const title: string = "[playlist.bpm]";
+const subtitleOne: string = "Generate playlists for your workouts based on your desired cadence."
+const subtitleTwo: string = "Input your desired BPM and song interests and we'll generate a playlist for you. It's that simple!";
 export const InfoBox = () => {
   return (
     <Box display={"inline"} alignItems="center">

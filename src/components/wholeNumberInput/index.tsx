@@ -7,23 +7,23 @@ import {
 import React from 'react';
 
 interface ExerciseMaxInputProps{
-  exercise: string;
+  title: string;
   maxValue: number;
-  setMaxReps(value: number): void;
+  setValue(value: number): void;
 }
 
-export const ExerciseMaxInput: React.FC<ExerciseMaxInputProps> = ({exercise, maxValue, setMaxReps}) => {
+export const WholeNumberInput: React.FC<ExerciseMaxInputProps> = ({title, maxValue, setValue}) => {
 
   return (
     <Box display={"flex"} alignItems="center" >
-      <h2>{exercise}</h2>
+      <h2>{title}</h2>
       <NumberInput 
         step={1} 
         defaultValue={0} 
         min={0} max={maxValue} 
         paddingLeft={5} 
         // pass up value to parent component so that we can set state there 
-        onChange={(valueString) => setMaxReps(parseInt(valueString)) }>
+        onChange={(valueString) => setValue(parseInt(valueString)) }>
         <NumberInputField />
         <NumberInputStepper>
           <NumberIncrementStepper />
