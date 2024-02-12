@@ -5,7 +5,7 @@ import axios from "axios";
 import { API_PLAYLISTS_ENDPOINT } from "../../common/constants";
 
 import { generatePlaylist } from "../../utility/workoutFileUtility";
-import getAuthInfo from "../../utility/authUtilityScript";
+import getAuthInfo from "../../utility/authUtility";
 
 interface SubmitButtonProps{
   numberOfSongs: number;
