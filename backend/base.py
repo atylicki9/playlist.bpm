@@ -9,26 +9,6 @@ api = Flask(__name__)
 # in backend directory: source env/bin/activate
 # then enter flask run and navigate to api 
 
-@api.route('/accessToken', methods = ['GET'])
-@cross_origin(origin='*')
-def accessToken():
-    def get_access_token():
-        print("Getting access token")
-        url = "https://accounts.spotify.com/api/token"
-        headers = {
-            "Content-Type": "application/x-www-form-urlencoded"
-        }
-        data = {
-            "grant_type": "client_credentials",
-            "client_id": environ.get('SPOTIFY_CLIENT_ID'),
-            "client_secret": environ.get('SPOTIFY_CLIENT_SECRET')
-        }
-
-        print(data)
-        response = requests.post(url, headers=headers, data=data)
-        print(response.json())
-        return "test"
-
 @api.route('/playlists', methods = ['POST'])
 @cross_origin(origin='*')
 def playlists():

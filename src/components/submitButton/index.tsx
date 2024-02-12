@@ -5,6 +5,7 @@ import axios from "axios";
 import { API_PLAYLISTS_ENDPOINT } from "../../common/constants";
 
 import { generatePlaylist } from "../../utility/workoutFileUtility";
+import getAuthInfo from "../../utility/authUtilityScript";
 
 interface SubmitButtonProps{
   numberOfSongs: number;
@@ -12,6 +13,9 @@ interface SubmitButtonProps{
 }
 
 const callPlaylistApi = (numberOfSongs: number, tempo: number) => {
+
+  getAuthInfo();
+
   axios.post(API_PLAYLISTS_ENDPOINT, {
     numberOfSongs: numberOfSongs,
     tempo: tempo, 
