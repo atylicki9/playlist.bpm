@@ -4,14 +4,24 @@ import {
   Box,
   VStack,
   Grid,
-  theme,
+  extendTheme
 } from "@chakra-ui/react"
 import { ColorModeSwitcher } from "./ColorModeSwitcher"
 import { WholeNumberInput } from "./components/wholeNumberInput"
-import { SliderInput } from './components/paceMaxInput';
+import { SliderInput } from './components/sliderInput';
 import { InfoBox } from './components/infoBox';
 import { DisclaimerBox } from './components/disclaimerBox';
 import { SubmitButton } from './components/submitButton';
+
+const theme = extendTheme({
+  colors: {
+    brand: {
+      100: "#FFFFFF",
+      300: "#1ED760",
+      900: "#191414",
+    },
+  },
+})
 
 export const App: React.FC = () => {
   const [numberOfSongs, setNumberOfSongs] = useState(0)

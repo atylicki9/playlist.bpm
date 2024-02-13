@@ -9,7 +9,7 @@ const subtitleTwo: string = "Input your desired BPM and song interests and we'll
 export const InfoBox = () => {
   return (
     <Box display={"inline"} alignItems="center">
-      <Heading fontWeight={"bold"}>{title}</Heading>
+      <Heading fontWeight={"bold"} color={"brand.300"}>{title}</Heading>
       <Text>{subtitleOne}</Text>
       <Text>{subtitleTwo}</Text>
     </Box>

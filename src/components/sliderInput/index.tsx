@@ -8,13 +8,13 @@ interface PaceMaxInputProps{
 
 
 export const SliderInput: React.FC<PaceMaxInputProps> = ({title, setValue}) => {
-  const [sliderValue, setSliderValue] = useState(50)
+  const [sliderValue, setSliderValue] = useState(150)
   return (
     <Box display={"inline"} alignItems="center" width={"50%"}>
       <h2>{title}</h2>
       <Slider
         marginTop={30}
-        defaultValue={10}
+        defaultValue={150}
         min={0}
         max={300}
         step={1}
@@ -24,7 +24,7 @@ export const SliderInput: React.FC<PaceMaxInputProps> = ({title, setValue}) => {
         }}
       >
         <SliderTrack>
-          <SliderFilledTrack />
+          <SliderFilledTrack bg={"brand.300"} />
         </SliderTrack>
         <SliderMark
           value={sliderValue}
