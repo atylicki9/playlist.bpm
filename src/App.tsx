@@ -13,6 +13,7 @@ import { SliderInput } from './components/sliderInput';
 import { InfoBox } from './components/infoBox';
 import { DisclaimerBox } from './components/disclaimerBox';
 import { SubmitButton } from './components/submitButton';
+import MusicGenreSelector from './components/genreSelectionButtons';
 
 const theme = extendTheme({
   colors: {
@@ -50,6 +51,7 @@ export const App: React.FC = () => {
             <InfoBox/>
             <WholeNumberInput title={"Number of Songs"} maxValue={100} setValue={setNumberOfSongs}/>
             <SliderInput title={"Tempo (BPM)"} setValue={setTempo}/>
+            <MusicGenreSelector/>
             <SubmitButton numberOfSongs={numberOfSongs} tempo={tempo}/>
           </VStack>
           <DisclaimerBox/>  
