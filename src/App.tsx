@@ -4,7 +4,8 @@ import {
   Box,
   VStack,
   Grid,
-  extendTheme
+  extendTheme,
+  Heading,
 } from "@chakra-ui/react"
 import { ColorModeSwitcher } from "./ColorModeSwitcher"
 import { WholeNumberInput } from "./components/wholeNumberInput"
@@ -21,6 +22,17 @@ const theme = extendTheme({
       900: "#191414",
     },
   },
+  config: {
+    initialColorMode: "dark",
+    useSystemColorMode: false,
+  },
+  styles: {
+    global: {
+      body: {
+        bg: "brand.900",
+      },
+    },
+  },
 })
 
 export const App: React.FC = () => {
@@ -31,7 +43,9 @@ export const App: React.FC = () => {
     <ChakraProvider theme={theme}>
       <Box textAlign="center" fontSize="xl">
         <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
+          <Box color={"brand.300"} justifySelf="flex-end">
+            <Heading size={"small"}>[playlist.bpm] via Spotify</Heading>
+          </Box>
           <VStack spacing={8}>
             <InfoBox/>
             <WholeNumberInput title={"Number of Songs"} maxValue={100} setValue={setNumberOfSongs}/>
@@ -42,7 +56,5 @@ export const App: React.FC = () => {
         </Grid>
       </Box>
     </ChakraProvider>
-
-
   )
 }
