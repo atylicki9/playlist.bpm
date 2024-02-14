@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, ButtonGroup, chakra, VStack } from '@chakra-ui/react';
+import { Button, ButtonGroup, VStack } from '@chakra-ui/react';
 
 interface MusicGenreSelectorProps{
     genres: string[];
@@ -24,7 +24,7 @@ const MusicGenreSelector: React.FC<MusicGenreSelectorProps> = ({genres, setValue
                 {genres.map((genre) => (
                     <Button
                         key={genre}
-                        bg={selectedGenres.includes(genre) ? 'brand.300' : 'gray'}
+                        bg={selectedGenres.includes(genre) ? 'brand.Green' : 'gray'}
                         onClick={() => handleGenreSelect(genre)}
                     >
                         {genre}

@@ -18,7 +18,7 @@ export const WholeNumberInput: React.FC<ExerciseMaxInputProps> = ({title, maxVal
     <Box display={"flex"} alignItems="center" >
       <h2>{title}</h2>
       <NumberInput 
-        focusBorderColor={"brand.300"}
+        focusBorderColor={"brand.Green"}
         step={1} 
         defaultValue={0} 
         min={0} max={maxValue} 

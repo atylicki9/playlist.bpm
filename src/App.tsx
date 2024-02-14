@@ -7,7 +7,6 @@ import {
   extendTheme,
   Heading,
 } from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
 import { WholeNumberInput } from "./components/wholeNumberInput"
 import { SliderInput } from './components/sliderInput';
 import { InfoBox } from './components/infoBox';
@@ -19,9 +18,9 @@ import { possibleGenres } from './common/constants';
 const theme = extendTheme({
   colors: {
     brand: {
-      100: "#FFFFFF",
-      300: "#1ED760",
-      900: "#191414",
+      "White": "#FFFFFF",
+      "Green": "#1ED760",
+      "Black": "#191414",
     },
   },
   config: {
@@ -31,7 +30,7 @@ const theme = extendTheme({
   styles: {
     global: {
       body: {
-        bg: "brand.900",
+        bg: "brand.Black",
       },
     },
   },
@@ -46,7 +45,7 @@ export const App: React.FC = () => {
     <ChakraProvider theme={theme}>
       <Box textAlign="center" fontSize="xl">
         <Grid minH="100vh" p={3}>
-          <Box color={"brand.300"} justifySelf="flex-end">
+          <Box color={"brand.Green"} justifySelf="flex-end">
             <Heading size={"small"}>[playlist.bpm] via Spotify</Heading>
           </Box>
           <VStack spacing={8}>

@@ -24,7 +24,7 @@ export const SliderInput: React.FC<PaceMaxInputProps> = ({title, setValue}) => {
         }}
       >
         <SliderTrack>
-          <SliderFilledTrack bg={"brand.300"} />
+          <SliderFilledTrack bg={"brand.Green"} />
         </SliderTrack>
         <SliderMark
           value={sliderValue}
