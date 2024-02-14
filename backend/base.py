@@ -21,6 +21,7 @@ def playlists():
     playlistInfo = {
         'numberOfSongs': request.json['numberOfSongs'],
         'tempo': request.json['tempo'],
+        'genres': request.json['genres'],
     }
     return jsonify({'playlistInfo': playlistInfo}), 201
 

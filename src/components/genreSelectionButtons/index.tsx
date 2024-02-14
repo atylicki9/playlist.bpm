@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import { Button, ButtonGroup, chakra, VStack } from '@chakra-ui/react';
 
-const MusicGenreSelector = () => {
+interface MusicGenreSelectorProps{
+    genres: string[];
+    setValue(value: string[]): void;
+  }
+
+const MusicGenreSelector: React.FC<MusicGenreSelectorProps> = ({genres, setValue})=> {
     const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
 
     const handleGenreSelect = (genre: string) => {
@@ -10,9 +15,8 @@ const MusicGenreSelector = () => {
         } else {
             setSelectedGenres([...selectedGenres, genre]);
         }
+        setValue(selectedGenres);
     };
-
-    const genres = ['Rock', 'Pop', 'Hip Hop', 'Jazz', 'EDM', 'Metal', 'Classical'];
 
     return (
         <VStack spacing={4}>

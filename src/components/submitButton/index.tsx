@@ -10,15 +10,17 @@ import getAuthInfo from "../../utility/authUtility";
 interface SubmitButtonProps{
   numberOfSongs: number;
   tempo: number;
+  genres: string[];
 }
 
-const callPlaylistApi = (numberOfSongs: number, tempo: number) => {
+const callPlaylistApi = (numberOfSongs: number, tempo: number, genres: string[]) => {
 
   getAuthInfo();
 
   axios.post(API_PLAYLISTS_ENDPOINT, {
     numberOfSongs: numberOfSongs,
     tempo: tempo, 
+    genres: genres
   })
   .then((response) => {
     console.log(response);
@@ -28,9 +30,9 @@ const callPlaylistApi = (numberOfSongs: number, tempo: number) => {
   });
 }
 
-export const SubmitButton: React.FC<SubmitButtonProps> = ({numberOfSongs, tempo}) => {
+export const SubmitButton: React.FC<SubmitButtonProps> = ({numberOfSongs, tempo, genres}) => {
   return (
-    <Button onClick={e => callPlaylistApi(numberOfSongs, tempo)}>
+    <Button onClick={e => callPlaylistApi(numberOfSongs, tempo, genres)}>
       <h1>Submit</h1>
     </Button>
   );
