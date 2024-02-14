@@ -39,7 +39,7 @@ const theme = extendTheme({
 
 export const App: React.FC = () => {
   const [numberOfSongs, setNumberOfSongs] = useState(0)
-  const [tempo, setTempo] = useState(0)
+  const [tempo, setTempo] = useState(150)
   const [genres, setGenres]= useState([] as string[])
 
   return (
