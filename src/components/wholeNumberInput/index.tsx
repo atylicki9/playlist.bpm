@@ -23,7 +23,6 @@ export const WholeNumberInput: React.FC<ExerciseMaxInputProps> = ({title, maxVal
         defaultValue={0} 
         min={0} max={maxValue} 
         paddingLeft={5} 
-        // pass up value to parent component so that we can set state there 
         onChange={(valueString) => setValue(parseInt(valueString)) }>
         <NumberInputField />
         <NumberInputStepper>

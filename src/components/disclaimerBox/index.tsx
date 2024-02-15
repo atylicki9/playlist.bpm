@@ -2,7 +2,6 @@ import {
   Box,
   Text
 } from "@chakra-ui/react";
-import React from 'react';
 
 const disclaimer:string = "DISCLAIMER: Figure out if i need one of these....."
 

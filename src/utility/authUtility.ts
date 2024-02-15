@@ -1,4 +1,5 @@
-import { CLIENT_ID } from "../environment";
+import axios from "axios";
+import { CLIENT_ID, CLIENT_SECRET } from "../environment";
 
 const clientId: string = CLIENT_ID;
 const params = new URLSearchParams(window.location.search);
@@ -63,12 +64,27 @@ async function getAccessToken(clientId: string, code: string): Promise<string> {
     params.append("redirect_uri", "http://localhost:3000/callback");
     params.append("code_verifier", verifier!);
 
-    const result = await fetch("https://accounts.spotify.com/api/token", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: params
-    });
+    try {
+        const result = await fetch("https://accounts.spotify.com/api/token", {
+            method: "POST",
+            headers: {
+                'content-type': 'application/x-www-form-urlencoded',
+                'Authorization': 'Basic ' + btoa(clientId + ':' + CLIENT_SECRET)
+            },
+            body: params
+        });
 
-    const { access_token } = await result.json();
-    return access_token;
+        if (result.status !== 200) {
+            const errorMessage = await result.text();
+            console.error("Error:", errorMessage);
+        } else {
+            const { access_token } = await result.json();
+            console.log("Access token:", access_token);
+            return access_token;
+        }
+    } catch (error) {
+        console.error("Error:", error);
+    }
+
+    return "no access token found";
 }
