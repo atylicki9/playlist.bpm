@@ -1,7 +1,5 @@
 from flask import Flask, request, jsonify, abort 
 from flask_cors import CORS, cross_origin
-from os import environ
-import requests
 
 api = Flask(__name__)
 
@@ -19,9 +17,24 @@ def playlists():
         dict: The playlist information.
     """
     playlistInfo = {
-        'numberOfSongs': request.json['numberOfSongs'],
-        'tempo': request.json['tempo'],
-        'genres': request.json['genres'],
+        'limit': request.json['numberOfSongs'],
+        'target_tempo': request.json['tempo'],
+        'seed_genres': request.json['genres'],
     }
-    return jsonify({'playlistInfo': playlistInfo}), 201
+
+    headers = {
+        'Authorization': 'Bearer '+ request.json['token'],
+        'Content-Type': 'application/json'
+    }
+
+    response = requests.get('https://api.spotify.com/v1/recommendations', params=playlistInfo, headers=headers)
+
+        # Check if the request was successful
+    if response.status_code == 200:
+        recommendations = response.json()
+        print(recommendations)        
+
+        return jsonify({'playlistInfo': playlistInfo, 'recommendations': recommendations}), 201
+    else:
+            abort(500)  # Handle the error case
 

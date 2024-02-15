@@ -13,7 +13,7 @@ export default async function getAuthInfo() {
     } else {
         // If we have a code, we'll exchange it for an access token.
         console.log("Exchanging code for access token...");
-        const accessToken = await getAccessToken(clientId, code);
+        return await getAccessToken(clientId, code);
     }
 }
 
