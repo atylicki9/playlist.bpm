@@ -20,8 +20,8 @@ const callPlaylistApi = (numberOfSongs: number, tempo: number, genres: string[])
   axios.post(API_PLAYLISTS_ENDPOINT, {
     numberOfSongs: numberOfSongs,
     tempo: tempo, 
-    genres: genres,
-    token: accessToken
+    genres: genres.toString(),
+    token: accessToken.toString()
   })
   .then((response) => {
     console.log(response);
