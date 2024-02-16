@@ -80,6 +80,7 @@ async function getAccessToken(clientId: string, code: string): Promise<string> {
         } else {
             const { access_token } = await result.json();
             console.log("Access token:", access_token);
+            localStorage.setItem("access_token", access_token);
             return access_token;
         }
     } catch (error) {
