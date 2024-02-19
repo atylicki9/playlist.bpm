@@ -15,15 +15,12 @@ interface SubmitButtonProps{
 
 const callPlaylistApi = (numberOfSongs: number, tempo: number, genres: string[]) => {
 
-  if (!localStorage.getItem("access_token"))
-  {
-    getAuthInfo();
-  }
+  getAuthInfo();
 
   axios.post(API_PLAYLISTS_ENDPOINT, {
     numberOfSongs: numberOfSongs,
     tempo: tempo, 
-    genres: genres.toString(),
+    genres: genres.toString().toLowerCase(),
     token: localStorage.getItem("access_token")
   })
   .then((response) => {

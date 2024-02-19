@@ -21,6 +21,8 @@ def playlists():
         'limit': request.json['numberOfSongs'],
         'target_tempo': request.json['tempo'],
         'seed_genres': request.json['genres'],
+        'market': 'US',
+        'min_popularity': 60,
     }
 
     response = requests.get('https://api.spotify.com/v1/recommendations',  params=playlistInfo, headers=headers )
