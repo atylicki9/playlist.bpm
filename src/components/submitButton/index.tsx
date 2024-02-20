@@ -11,9 +11,10 @@ interface SubmitButtonProps{
   numberOfSongs: number;
   tempo: number;
   genres: string[];
+  setValue: ((songs: any) => void);
 }
 
-const callPlaylistApi = (numberOfSongs: number, tempo: number, genres: string[]) => {
+const callPlaylistApi = (numberOfSongs: number, tempo: number, genres: string[], setValue: ((songs: any) => void)) => {
 
   getAuthInfo();
 
@@ -25,15 +26,16 @@ const callPlaylistApi = (numberOfSongs: number, tempo: number, genres: string[])
   })
   .then((response) => {
     console.log(response);
-    generatePlaylist(response)
+    generatePlaylist(response);
+    setValue(response.data.recommendations.tracks.map((song: any) => song.name));
   }, (error) => {
     console.log(error);
   });
 }
 
-export const SubmitButton: React.FC<SubmitButtonProps> = ({numberOfSongs, tempo, genres}) => {
+export const SubmitButton: React.FC<SubmitButtonProps> = ({numberOfSongs, tempo, genres, setValue}) => {
   return (
-    <Button onClick={e => callPlaylistApi(numberOfSongs, tempo, genres)}>
+    <Button onClick={e => callPlaylistApi(numberOfSongs, tempo, genres, setValue)}>
       <h1>Submit</h1>
     </Button>
   );

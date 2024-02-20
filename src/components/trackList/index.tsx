@@ -7,7 +7,7 @@ interface Song {
 }
 
 interface SongListProps {
-    songs: Song[];
+    songs: string[];
 }
 
 const SongList: React.FC<SongListProps> = ({ songs }) => {
@@ -15,9 +15,7 @@ const SongList: React.FC<SongListProps> = ({ songs }) => {
         <Box>
             {songs.map((song, index) => (
                 <Box key={index} p={4} borderWidth="1px" borderRadius="md" mb={4}>
-                    <Text fontWeight="bold">{song.name}</Text>
-                    <Text>{song.artist}</Text>
-                    <Text>{song.album}</Text>
+                    <Text fontWeight="bold">{song}</Text>
                 </Box>
             ))}
         </Box>

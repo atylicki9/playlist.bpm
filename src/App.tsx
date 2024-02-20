@@ -14,6 +14,7 @@ import { DisclaimerBox } from './components/disclaimerBox';
 import { SubmitButton } from './components/submitButton';
 import MusicGenreSelector from './components/genreSelectionButtons';
 import { possibleGenres } from './common/constants';
+import SongList from './components/trackList';
 
 const theme = extendTheme({
   colors: {
@@ -40,6 +41,7 @@ export const App: React.FC = () => {
   const [numberOfSongs, setNumberOfSongs] = useState(0)
   const [tempo, setTempo] = useState(150)
   const [genres, setGenres]= useState([] as string[])
+  const [songs, setSongs] = useState([] as string[])
 
   return (
     <ChakraProvider theme={theme}>
@@ -53,7 +55,8 @@ export const App: React.FC = () => {
             <WholeNumberInput title={"Number of Songs"} maxValue={100} setValue={setNumberOfSongs}/>
             <SliderInput title={"Tempo (BPM)"} setValue={setTempo}/>
             <MusicGenreSelector genres={possibleGenres} setValue={setGenres}/>
-            <SubmitButton numberOfSongs={numberOfSongs} tempo={tempo} genres={genres}/>
+            <SubmitButton numberOfSongs={numberOfSongs} tempo={tempo} genres={genres} setValue={setSongs}/>
+            <SongList songs={songs}/>
           </VStack>
           <DisclaimerBox/>  
         </Grid>
