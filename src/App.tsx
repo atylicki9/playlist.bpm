@@ -14,6 +14,7 @@ import { DisclaimerBox } from './components/disclaimerBox';
 import { SubmitButton } from './components/submitButton';
 import MusicGenreSelector from './components/genreSelectionButtons';
 import { possibleGenres } from './common/constants';
+import { Song } from './components/submitButton';
 import SongList from './components/trackList';
 
 const theme = extendTheme({
@@ -41,7 +42,7 @@ export const App: React.FC = () => {
   const [numberOfSongs, setNumberOfSongs] = useState(0)
   const [tempo, setTempo] = useState(150)
   const [genres, setGenres]= useState([] as string[])
-  const [songs, setSongs] = useState([] as string[])
+  const [songs, setSongs] = useState([] as Song[])
 
   return (
     <ChakraProvider theme={theme}>

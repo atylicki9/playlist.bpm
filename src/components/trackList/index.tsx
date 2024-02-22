@@ -1,13 +1,8 @@
 import { Box, Text } from "@chakra-ui/react";
-
-interface Song {
-    name: string;
-    artist: string;
-    album: string;
-}
+import { Song } from "../submitButton";
 
 interface SongListProps {
-    songs: string[];
+    songs: Song[];
 }
 
 const SongList: React.FC<SongListProps> = ({ songs }) => {
@@ -15,7 +10,7 @@ const SongList: React.FC<SongListProps> = ({ songs }) => {
         <Box>
             {songs.map((song, index) => (
                 <Box key={index} p={4} borderWidth="1px" borderRadius="md" mb={4}>
-                    <Text fontWeight="bold">{song}</Text>
+                    <Text fontWeight="bold">{song.name} by {song.artist}</Text>
                 </Box>
             ))}
         </Box>

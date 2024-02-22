@@ -7,6 +7,12 @@ import { API_PLAYLISTS_ENDPOINT } from "../../common/constants";
 import { generatePlaylist } from "../../utility/workoutFileUtility";
 import getAuthInfo from "../../utility/authUtility";
 
+export interface Song {
+  name: string;
+  artist: string;
+  album: string;
+}
+
 interface SubmitButtonProps{
   numberOfSongs: number;
   tempo: number;
@@ -27,7 +33,11 @@ const callPlaylistApi = (numberOfSongs: number, tempo: number, genres: string[],
   .then((response) => {
     console.log(response);
     generatePlaylist(response);
-    setValue(response.data.recommendations.tracks.map((song: any) => song.name));
+    setValue(response.data.recommendations.tracks.map((track: any) => ({
+      name: track.name,
+      artist: track.artists[0].name,
+      album: track.album.name
+    })));
   }, (error) => {
     console.log(error);
   });
