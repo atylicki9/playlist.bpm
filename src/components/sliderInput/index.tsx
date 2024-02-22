@@ -1,13 +1,13 @@
 import { Box, Slider, SliderFilledTrack, SliderThumb, SliderTrack, SliderMark } from "@chakra-ui/react";
 import React, { useState } from 'react';
 
-interface PaceMaxInputProps{
+interface SliderInputProps{
   title: string;
   setValue(value: number): void;
 }
 
 
-export const SliderInput: React.FC<PaceMaxInputProps> = ({title, setValue}) => {
+export const SliderInput: React.FC<SliderInputProps> = ({title, setValue}) => {
   const [sliderValue, setSliderValue] = useState(150)
   return (
     <Box display={"inline"} alignItems="center" width={"50%"}>

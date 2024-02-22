@@ -16,6 +16,8 @@ import MusicGenreSelector from './components/genreSelectionButtons';
 import { possibleGenres } from './common/constants';
 import { Song } from './components/submitButton';
 import SongList from './components/trackList';
+import { TextInput } from './components/textInput';
+import GeneratePlaylistButton from './components/generatePlaylistButton';
 
 const theme = extendTheme({
   colors: {
@@ -39,6 +41,7 @@ const theme = extendTheme({
 })
 
 export const App: React.FC = () => {
+  const [playlistName, setPlaylistName] = useState("")
   const [numberOfSongs, setNumberOfSongs] = useState(0)
   const [tempo, setTempo] = useState(150)
   const [genres, setGenres]= useState([] as string[])
@@ -53,11 +56,13 @@ export const App: React.FC = () => {
           </Box>
           <VStack spacing={8}>
             <InfoBox/>
+            <TextInput title={"PlaylistName"} setValue={setPlaylistName}/>
             <WholeNumberInput title={"Number of Songs"} maxValue={100} setValue={setNumberOfSongs}/>
             <SliderInput title={"Tempo (BPM)"} setValue={setTempo}/>
             <MusicGenreSelector genres={possibleGenres} setValue={setGenres}/>
             <SubmitButton numberOfSongs={numberOfSongs} tempo={tempo} genres={genres} setValue={setSongs}/>
             <SongList songs={songs}/>
+            <GeneratePlaylistButton playlistName={playlistName} songs={songs}/>
           </VStack>
           <DisclaimerBox/>  
         </Grid>
