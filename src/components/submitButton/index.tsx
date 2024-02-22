@@ -3,8 +3,6 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { API_TRACKS_ENDPOINT } from "../../common/constants";
-
-import { generatePlaylist } from "../../utility/workoutFileUtility";
 import getAuthInfo from "../../utility/authUtility";
 
 export interface Song {
@@ -33,7 +31,6 @@ const callPlaylistApi = (numberOfSongs: number, tempo: number, genres: string[],
   })
   .then((response) => {
     console.log(response);
-    generatePlaylist(response);
     setValue(response.data.recommendations.tracks.map((track: any) => ({
       id: track.id,
       name: track.name,
