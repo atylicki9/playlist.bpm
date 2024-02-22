@@ -9,29 +9,51 @@ api = Flask(__name__)
 # in backend directory: source env/bin/activate
 # then enter flask run and navigate to api 
 
-@api.route('/playlists', methods = ['POST'])
+@api.route('/tracks', methods = ['POST'])
 @cross_origin(origin='*')
-def playlists():
+def tracks():
     headers = {
         'Authorization': 'Bearer '+ request.json['token'],
         'Content-Type': 'application/json'
     }
 
-    playlistInfo = {
+    trackParams = {
         'limit': request.json['numberOfSongs'],
         'target_tempo': request.json['tempo'],
         'seed_genres': request.json['genres'],
         'min_popularity': 40,
     }
 
-    response = requests.get('https://api.spotify.com/v1/recommendations',  params=playlistInfo, headers=headers )
+    response = requests.get('https://api.spotify.com/v1/recommendations',  params=trackParams, headers=headers )
 
     if response.status_code == 200:
         recommendations = response.json()
         print(recommendations)        
 
-        return jsonify({'playlistInfo': playlistInfo, 'recommendations': recommendations}), 201
+        return jsonify({'trackParams': trackParams, 'recommendations': recommendations}), 201
     else:
         print(response.json())
         abort(response.status_code)
 
+@api.route('/createPlaylist', methods = ['POST'])
+@cross_origin(origin='*')
+def tracks():
+    headers = {
+        'Authorization': 'Bearer '+ request.json['token'],
+        'Content-Type': 'application/json'
+    }
+
+    playlistParams = {
+        'name': request.json['playlistName'],
+        'public': False,
+    }
+
+    response = requests.get('https://api.spotify.com//v1/users/atylicki/playlists',  params=playlistParams, headers=headers )
+
+    if response.status_code == 200:
+        response = response.json()       
+
+        return jsonify({'apiResponse': response}), 201
+    else:
+        print(response.json())
+        abort(response.status_code)

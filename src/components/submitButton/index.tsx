@@ -2,7 +2,7 @@ import {
   Button
 } from "@chakra-ui/react";
 import axios from "axios";
-import { API_PLAYLISTS_ENDPOINT } from "../../common/constants";
+import { API_TRACKS_ENDPOINT } from "../../common/constants";
 
 import { generatePlaylist } from "../../utility/workoutFileUtility";
 import getAuthInfo from "../../utility/authUtility";
@@ -25,7 +25,7 @@ const callPlaylistApi = (numberOfSongs: number, tempo: number, genres: string[],
 
   getAuthInfo();
 
-  axios.post(API_PLAYLISTS_ENDPOINT, {
+  axios.post(API_TRACKS_ENDPOINT, {
     numberOfSongs: numberOfSongs,
     tempo: tempo, 
     genres: genres.toString().toLowerCase(),

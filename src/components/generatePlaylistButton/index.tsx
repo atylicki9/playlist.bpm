@@ -1,50 +1,43 @@
 import { Button } from "@chakra-ui/react";
-import { useState } from "react";
 import { Song } from "../submitButton";
+import axios from "axios";
+import { API_PLAYLISTS_ENDPOINT } from "../../common/constants";
 
 interface GeneratePlaylistButtonProps {
     playlistName: string;
     songs: Song[];
 }
 
+const createPlaylist = async (playlistName: string) => {
+    axios.post(API_PLAYLISTS_ENDPOINT, {
+        name: playlistName,
+      })
+      .then((response) => {
+        console.log(response);
+        
+      }, (error) => {
+        console.log(error);
+      });
+}
+
+
 const GeneratePlaylistButton: React.FC<GeneratePlaylistButtonProps> = ({
     playlistName,
     songs,
 }) => {
-    const [isLoading, setIsLoading] = useState(false);
-
     const handleButtonClick = async () => {
-        setIsLoading(true);
-
         try {
-            // Call the backend API to create the Spotify playlist
-            const response = await fetch("/api/createPlaylist", {
-                method: "POST",
-                body: JSON.stringify({ playlistName, songs }),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-
-            if (response.ok) {
-                // Playlist created successfully
-                console.log("Playlist created!");
-            } else {
-                // Handle error response from the backend
-                console.error("Failed to create playlist");
-            }
+            createPlaylist(playlistName)
         } catch (error) {
             // Handle network or other errors
             console.error("Failed to create playlist", error);
         }
-
-        setIsLoading(false);
     };
 
     return (
         <>
             {songs.length > 0 && (
-                <Button onClick={handleButtonClick} isLoading={isLoading}>
+                <Button onClick={handleButtonClick}>
                     Generate Playlist
                 </Button>
             )}
