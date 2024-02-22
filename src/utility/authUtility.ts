@@ -1,4 +1,3 @@
-import axios from "axios";
 import { CLIENT_ID, CLIENT_SECRET } from "../environment";
 
 const clientId: string = CLIENT_ID;

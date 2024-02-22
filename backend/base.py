@@ -34,7 +34,8 @@ def tracks():
     else:
         print(response.json())
         abort(response.status_code)
-
+        
+'''
 @api.route('/createPlaylist', methods = ['POST'])
 @cross_origin(origin='*')
 def tracks():
@@ -57,3 +58,4 @@ def tracks():
     else:
         print(response.json())
         abort(response.status_code)
+'''
