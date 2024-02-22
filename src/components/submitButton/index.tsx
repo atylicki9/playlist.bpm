@@ -8,6 +8,7 @@ import { generatePlaylist } from "../../utility/workoutFileUtility";
 import getAuthInfo from "../../utility/authUtility";
 
 export interface Song {
+  id: string;
   name: string;
   artist: string;
   album: string;
@@ -34,6 +35,7 @@ const callPlaylistApi = (numberOfSongs: number, tempo: number, genres: string[],
     console.log(response);
     generatePlaylist(response);
     setValue(response.data.recommendations.tracks.map((track: any) => ({
+      id: track.id,
       name: track.name,
       artist: track.artists[0].name,
       album: track.album.name
