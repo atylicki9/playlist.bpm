@@ -34,11 +34,10 @@ def tracks():
     else:
         print(response.json())
         abort(response.status_code)
-        
-'''
+
 @api.route('/createPlaylist', methods = ['POST'])
 @cross_origin(origin='*')
-def tracks():
+def createPlaylist():
     headers = {
         'Authorization': 'Bearer '+ request.json['token'],
         'Content-Type': 'application/json'
@@ -53,9 +52,8 @@ def tracks():
 
     if response.status_code == 200:
         response = response.json()       
-
+        print("Playlist Generated. Response: " + response)
         return jsonify({'apiResponse': response}), 201
     else:
         print(response.json())
         abort(response.status_code)
-'''
