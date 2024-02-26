@@ -11,6 +11,7 @@ interface GeneratePlaylistButtonProps {
 const createPlaylist = async (playlistName: string) => {
     axios.post(API_PLAYLISTS_ENDPOINT, {
         name: playlistName,
+        token: localStorage.getItem("access_token")
       })
       .then((response) => {
         console.log(response);

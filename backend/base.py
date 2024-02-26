@@ -44,7 +44,7 @@ def createPlaylist():
     }
 
     playlistParams = {
-        'name': request.json['playlistName'],
+        'name': request.json['name'],
         'public': False,
     }
 
