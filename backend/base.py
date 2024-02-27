@@ -47,12 +47,13 @@ def createPlaylist():
         'name': request.json['name']
     }
 
-    response = requests.get('https://api.spotify.com//v1/users/atylicki/playlists',  params=playlistParams, headers=headers )
+    response = requests.post('https://api.spotify.com/v1/users/atylicki/playlists',  params=playlistParams, headers=headers )
 
     if response.status_code == 200:
         response = response.json()       
         print("Playlist Generated. Response: " + response)
         return jsonify({'apiResponse': response}), 201
     else:
+        print(request)
         print(response.json())
         abort(response.status_code)
