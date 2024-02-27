@@ -44,8 +44,7 @@ def createPlaylist():
     }
 
     playlistParams = {
-        'name': request.json['name'],
-        'public': False,
+        'name': request.json['name']
     }
 
     response = requests.get('https://api.spotify.com//v1/users/atylicki/playlists',  params=playlistParams, headers=headers )
