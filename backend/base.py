@@ -56,4 +56,8 @@ def createPlaylist():
     else:
         print(request)
         print(response.json())
-        abort(response.status_code)
+        error_response = {
+            'error': 'An error occurred',
+            'message': response.json()
+        }
+        return jsonify(error_response), response.status_code
