@@ -12,7 +12,6 @@ export default async function getAuthInfo() {
 }
 
 export async function getAccessTokenFromCode() {
-    console.log("Exchanging code for access token...");
     if (code)
     {
         return await getAccessToken(clientId, code!); 

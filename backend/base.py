@@ -46,8 +46,8 @@ def createPlaylist():
     playlistParams = {
         'name': request.json['name']
     }
-
-    response = requests.post('https://api.spotify.com/v1/users/atylicki/playlists',  params=playlistParams, headers=headers )
+    print(playlistParams)
+    response = requests.post('https://api.spotify.com/v1/users/31fesszlc4yms6y33oobjdr5ubam/playlists',  params=playlistParams, headers=headers )
 
     if response.status_code == 200:
         response = response.json()       
