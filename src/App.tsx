@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Button, 
   ChakraProvider,
@@ -19,7 +19,8 @@ import { Song } from './components/submitButton';
 import SongList from './components/trackList';
 import { TextInput } from './components/textInput';
 import GeneratePlaylistButton from './components/generatePlaylistButton';
-import getAuthInfo from './utility/authUtility';
+import getAuthInfo, { getAccessTokenFromCode } from './utility/authUtility';
+import { error } from 'console';
 
 const theme = extendTheme({
   colors: {
@@ -42,8 +43,6 @@ const theme = extendTheme({
   },
 })
 
-
-
 export const App: React.FC = () => {
   const [playlistName, setPlaylistName] = useState("")
   const [numberOfSongs, setNumberOfSongs] = useState(0)
@@ -53,10 +52,20 @@ export const App: React.FC = () => {
   const [accessToken, setAccessToken] = useState("")
 
   const handleSpotifyConnect = () => {
-    getAuthInfo().then(() => {
-      setAccessToken(localStorage.getItem("access_token") || "")
-    });
+    getAuthInfo()
   } 
+  
+  useEffect(() => {
+    getAccessTokenFromCode();
+    if(localStorage.getItem("access_token")) {
+      console.log("Access token found")
+      setAccessToken(localStorage.getItem("access_token") || "");
+    }
+    else {
+      console.log("No access token found")
+    }
+    
+  }, []);
 
   return (
     <ChakraProvider theme={theme}>

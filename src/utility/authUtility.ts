@@ -5,14 +5,17 @@ const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
 
 export default async function getAuthInfo() {
-    if (!code || !localStorage.getItem("access_token") ) {
-        // If we don't have a code, we'll redirect the user to the Spotify authorization page.
+    if (!code) {
         console.log("Redirecting to Spotify authorization page...");
         redirectToAuthCodeFlow(clientId);
-    } else {
-        // If we have a code, we'll exchange it for an access token.
-        console.log("Exchanging code for access token...");
-        return await getAccessToken(clientId, code!); // Add '!' to assert that code is not null
+    } 
+}
+
+export async function getAccessTokenFromCode() {
+    console.log("Exchanging code for access token...");
+    if (code)
+    {
+        return await getAccessToken(clientId, code!); 
     }
 }
 

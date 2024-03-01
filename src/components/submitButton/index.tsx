@@ -20,9 +20,6 @@ interface SubmitButtonProps{
 }
 
 const callPlaylistApi = (numberOfSongs: number, tempo: number, genres: string[], setValue: ((songs: any) => void)) => {
-
-  getAuthInfo();
-
   axios.post(API_TRACKS_ENDPOINT, {
     numberOfSongs: numberOfSongs,
     tempo: tempo, 
