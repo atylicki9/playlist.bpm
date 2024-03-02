@@ -26,14 +26,10 @@ const addTracksToPlaylist = async (playlistId: string, songIds: string[]) => {
         playlistId: playlistId,
         songIds: songIds,
         token: localStorage.getItem("access_token")
-    })
-    .then((response) => {
-        
-    }, (error) => {
-    console.log(error);
+    }).catch((error) => {
+        console.log(error);
     });
 }
-
 
 const GeneratePlaylistButton: React.FC<GeneratePlaylistButtonProps> = ({
     playlistName,

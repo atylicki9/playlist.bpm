@@ -12,7 +12,7 @@ const MusicGenreSelector: React.FC<MusicGenreSelectorProps> = ({genres, setValue
     const handleGenreSelect = (genre: string) => {
         let updatedGenres: string[];
         if (selectedGenreButtons.includes(genre)) {
-            updatedGenres = selectedGenreButtons.filter((g) => g !== genre);
+            updatedGenres = selectedGenreButtons.filter((genre) => genre !== genre);
         } else {
             updatedGenres = [...selectedGenreButtons, genre];
         }

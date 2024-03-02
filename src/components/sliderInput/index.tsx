@@ -6,7 +6,6 @@ interface SliderInputProps{
   setValue(value: number): void;
 }
 
-
 export const SliderInput: React.FC<SliderInputProps> = ({title, setValue}) => {
   const [sliderValue, setSliderValue] = useState(150)
   return (
