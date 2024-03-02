@@ -20,7 +20,6 @@ import SongList from './components/trackList';
 import { TextInput } from './components/textInput';
 import GeneratePlaylistButton from './components/generatePlaylistButton';
 import getAuthInfo, { getAccessTokenFromCode } from './utility/authUtility';
-import { error } from 'console';
 
 const theme = extendTheme({
   colors: {
@@ -52,19 +51,19 @@ export const App: React.FC = () => {
   const [accessToken, setAccessToken] = useState("")
 
   const handleSpotifyConnect = () => {
-    getAuthInfo()
+    getAuthInfo();
+
   } 
   
   useEffect(() => {
-    getAccessTokenFromCode();
-    if(localStorage.getItem("access_token")) {
-      console.log("Access token found")
+    if(!localStorage.getItem("access_token")) {
+      getAccessTokenFromCode();
+      console.log("Access token found");
       setAccessToken(localStorage.getItem("access_token") || "");
     }
     else {
-      console.log("No access token found")
+      setAccessToken(localStorage.getItem("access_token") || "");
     }
-    
   }, []);
 
   return (
@@ -72,10 +71,10 @@ export const App: React.FC = () => {
         <Grid minH="100vh" p={3}>
           <Box color={"brand.Green"} justifySelf="flex-end">
             <Heading size={"small"}>[playlist.bpm] via Spotify</Heading>
+            {!accessToken && (
+              <Button onClick={handleSpotifyConnect}>Connect to Spotify</Button>
+            )}
           </Box>
-          {!accessToken && (
-            <Button onClick={handleSpotifyConnect}>Connect to Spotify</Button>
-          )}
           {accessToken && (
             <VStack spacing={8}>
               <InfoBox/>

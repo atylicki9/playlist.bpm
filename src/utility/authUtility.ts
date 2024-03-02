@@ -7,14 +7,15 @@ const code = params.get("code");
 export default async function getAuthInfo() {
     if (!code) {
         console.log("Redirecting to Spotify authorization page...");
-        redirectToAuthCodeFlow(clientId);
+        redirectToAuthCodeFlow(clientId)
     } 
 }
 
 export async function getAccessTokenFromCode() {
     if (code)
     {
-        return await getAccessToken(clientId, code!); 
+        await getAccessToken(clientId, code!); 
+        document.location.reload(); // reload once token is received.
     }
 }
 
