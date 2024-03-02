@@ -1,16 +1,30 @@
 import { Button } from "@chakra-ui/react";
 import { Song } from "../submitButton";
 import axios from "axios";
-import { API_PLAYLISTS_ENDPOINT } from "../../common/constants";
+import { API_CREATE_PLAYLISTS_ENDPOINT, API_ADD_TRACKS_TO_PLAYLISTS_ENDPOINT} from "../../common/constants";
 
 interface GeneratePlaylistButtonProps {
     playlistName: string;
     songs: Song[];
 }
 
-const createPlaylist = async (playlistName: string) => {
-    axios.post(API_PLAYLISTS_ENDPOINT, {
-        name: playlistName,
+const createPlaylist = async (playlistName: string, songs: Song[]) => {
+    axios.post(API_CREATE_PLAYLISTS_ENDPOINT, {
+        playlistName: playlistName,
+        token: localStorage.getItem("access_token")
+      })
+      .then((response) => {
+        console.log(response);
+        addTracksToPlaylist(response.data.message.id, songs.map(song => "spotify:track:"+song.id))
+      }, (error) => {
+        console.log(error);
+      });
+}
+
+const addTracksToPlaylist = async (playlistId: string, songIds: string[]) => {
+    axios.post(API_ADD_TRACKS_TO_PLAYLISTS_ENDPOINT, {
+        playlistId: playlistId,
+        songIds: songIds,
         token: localStorage.getItem("access_token")
       })
       .then((response) => {
@@ -28,9 +42,8 @@ const GeneratePlaylistButton: React.FC<GeneratePlaylistButtonProps> = ({
 }) => {
     const handleButtonClick = async () => {
         try {
-            createPlaylist(playlistName)
+            createPlaylist(playlistName, songs)
         } catch (error) {
-            // Handle network or other errors
             console.error("Failed to create playlist", error);
         }
     };
