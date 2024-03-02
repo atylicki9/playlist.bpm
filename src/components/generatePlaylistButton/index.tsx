@@ -1,7 +1,8 @@
-import { Button } from "@chakra-ui/react";
+import { Button, useToast } from "@chakra-ui/react";
 import { Song } from "../submitButton";
 import axios from "axios";
 import { API_CREATE_PLAYLISTS_ENDPOINT, API_ADD_TRACKS_TO_PLAYLISTS_ENDPOINT} from "../../common/constants";
+
 
 interface GeneratePlaylistButtonProps {
     playlistName: string;
@@ -12,13 +13,12 @@ const createPlaylist = async (playlistName: string, songs: Song[]) => {
     axios.post(API_CREATE_PLAYLISTS_ENDPOINT, {
         playlistName: playlistName,
         token: localStorage.getItem("access_token")
-      })
-      .then((response) => {
-        console.log(response);
-        addTracksToPlaylist(response.data.message.id, songs.map(song => "spotify:track:"+song.id))
-      }, (error) => {
+    })
+    .then((response) => {
+        addTracksToPlaylist(response.data.message.id, songs.map(song => "spotify:track:"+song.id));
+    }, (error) => {
         console.log(error);
-      });
+    });
 }
 
 const addTracksToPlaylist = async (playlistId: string, songIds: string[]) => {
@@ -26,13 +26,12 @@ const addTracksToPlaylist = async (playlistId: string, songIds: string[]) => {
         playlistId: playlistId,
         songIds: songIds,
         token: localStorage.getItem("access_token")
-      })
-      .then((response) => {
-        console.log(response);
+    })
+    .then((response) => {
         
-      }, (error) => {
-        console.log(error);
-      });
+    }, (error) => {
+    console.log(error);
+    });
 }
 
 
@@ -40,9 +39,14 @@ const GeneratePlaylistButton: React.FC<GeneratePlaylistButtonProps> = ({
     playlistName,
     songs,
 }) => {
+    const toast = useToast();
     const handleButtonClick = async () => {
         try {
-            createPlaylist(playlistName, songs)
+            toast.promise(createPlaylist(playlistName, songs), {
+                success: { title: 'Success!', description: 'Your playlist has been generated.' },
+                error: { title: 'Error!', description: 'Unable to generate playlist at this time. ' },
+                loading: { title: 'Loading', description: 'Playlist Generating....' },
+              })
         } catch (error) {
             console.error("Failed to create playlist", error);
         }

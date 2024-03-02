@@ -11,7 +11,6 @@ import {
 import { WholeNumberInput } from "./components/wholeNumberInput"
 import { SliderInput } from './components/sliderInput';
 import { InfoBox } from './components/infoBox';
-import { DisclaimerBox } from './components/disclaimerBox';
 import { SubmitButton } from './components/submitButton';
 import MusicGenreSelector from './components/genreSelectionButtons';
 import { possibleGenres } from './common/constants';
@@ -87,7 +86,6 @@ export const App: React.FC = () => {
               <GeneratePlaylistButton playlistName={playlistName} songs={songs}/>
             </VStack>
           )}
-          <DisclaimerBox/>  
         </Grid>
     </ChakraProvider>
   )
