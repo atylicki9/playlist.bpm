@@ -7,6 +7,7 @@ import {
   Grid,
   extendTheme,
   Heading,
+  Center,
 } from "@chakra-ui/react"
 import { WholeNumberInput } from "./components/wholeNumberInput"
 import { SliderInput } from './components/sliderInput';
@@ -67,26 +68,37 @@ export const App: React.FC = () => {
 
   return (
     <ChakraProvider theme={theme}>
-        <Grid minH="100vh" p={3}>
-          <Box color={"brand.Green"} justifySelf="flex-end">
-            <Heading size={"small"}>[playlist.bpm] via Spotify</Heading>
-            {!accessToken && (
-              <Button onClick={handleSpotifyConnect}>Connect to Spotify</Button>
-            )}
-          </Box>
-          {accessToken && (
-            <VStack spacing={8}>
-              <InfoBox/>
-              <TextInput title={"PlaylistName"} setValue={setPlaylistName}/>
-              <WholeNumberInput title={"Number of Songs"} maxValue={100} setValue={setNumberOfSongs}/>
-              <SliderInput title={"Tempo (BPM)"} setValue={setTempo}/>
-              <MusicGenreSelector genres={possibleGenres} setValue={setGenres}/>
-              <SubmitButton numberOfSongs={numberOfSongs} tempo={tempo} genres={genres} setValue={setSongs}/>
-              <SongList songs={songs}/>
-              <GeneratePlaylistButton playlistName={playlistName} songs={songs}/>
-            </VStack>
-          )}
-        </Grid>
+      <Grid minH="100vh" p={3}>
+        <Box color={"brand.Green"} justifySelf="flex-end">
+          <Heading size={"small"}>[playlist.bpm] via Spotify</Heading>
+        </Box>
+        {!accessToken && (
+          <Button onClick={handleSpotifyConnect} mx="auto" w="50%">
+            Connect to Spotify
+          </Button>
+        )}
+        {accessToken && (
+          <VStack spacing={8}>
+            <InfoBox />
+            <TextInput title={"PlaylistName"} setValue={setPlaylistName} />
+            <WholeNumberInput
+              title={"Number of Songs"}
+              maxValue={100}
+              setValue={setNumberOfSongs}
+            />
+            <SliderInput title={"Tempo (BPM)"} setValue={setTempo} />
+            <MusicGenreSelector genres={possibleGenres} setValue={setGenres} />
+            <SubmitButton
+              numberOfSongs={numberOfSongs}
+              tempo={tempo}
+              genres={genres}
+              setValue={setSongs}
+            />
+            <SongList songs={songs} />
+            <GeneratePlaylistButton playlistName={playlistName} songs={songs} />
+          </VStack>
+        )}
+      </Grid>
     </ChakraProvider>
-  )
+  );
 }
