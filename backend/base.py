@@ -6,10 +6,6 @@ import random
 
 api = Flask(__name__)
 
-# to run>
-# in backend directory: source env/bin/activate
-# then enter flask run and navigate to api 
-
 @api.route('/userInfo', methods=['POST'])
 @cross_origin(origin='*')
 def get_user_info():
