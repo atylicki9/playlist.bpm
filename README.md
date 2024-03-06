@@ -1,5 +1,6 @@
 # Playlist.bpm by Aaron Tylicki
 ## About the App
+This app leverages the Spotify API to generate playlists for people looking to target a certain tempo/BPM when listening. The app allows the user to first, connect their spotify account, then generate a list of songs with the desired BPM by a given set of parameters (like genre and number of songs). Once the user is pleased with their list of songs, they can then add the playlist to their spotify account seamlessly through this application.
 
 ## Local Running
 ### Access Token
