@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, abort
 from flask_cors import CORS, cross_origin
 from os import environ
 import requests
+import random
 
 api = Flask(__name__)
 
@@ -36,7 +37,10 @@ def tracks():
 
     trackParams = {
         'limit': request.json['numberOfSongs'],
-        'target_tempo': request.json['tempo'],
+        'min_tempo': request.json['tempo'] - 10,
+        'max_tempo': request.json['tempo'] + 10,
+        'target_danceability': random.uniform(0.6, 1),
+        'target_energy': random.uniform(0.6, 1),
         'seed_genres': request.json['genres'],
         'min_popularity': 40,
     }
@@ -66,7 +70,7 @@ def createPlaylist():
         'public': False
     }
     print(playlistParams)
-    response = requests.post(f'https://api.spotify.com/v1/users/{request.json['userId']}playlists',  json=playlistParams, headers=headers )
+    response = requests.post(f"https://api.spotify.com/v1/users/{request.json['userId']}playlists",  json=playlistParams, headers=headers )
 
     if response.status_code == 200:
         response = response.json()       

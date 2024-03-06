@@ -7,8 +7,8 @@ export async function getUserInfo(): Promise<any> {
         token: localStorage.getItem("access_token")
       })
       .then((response) => {
-        console.log(response.data.apiResponse);
-        return response.data.apiResponse.id;
+        console.log(response.data.userInfo);
+        return response.data.userInfo.id;
       }, (error) => {
         console.log(error);
       });
