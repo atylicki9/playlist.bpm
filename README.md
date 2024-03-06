@@ -8,7 +8,7 @@ In the src directory, create a file called environment.ts. Here, add your spotif
 export const CLIENT_ID: string = "xxxxxxxxxxxxxx";
 export const CLIENT_SECRET: string = "xxxxxxxxxxxxxx";
 ```
-To generate these values follow [Spotify's directions for getting started.](https://developer.spotify.com/documentation/web-api/tutorials/getting-started)
+To generate these values, follow [Spotify's directions for getting started.](https://developer.spotify.com/documentation/web-api/tutorials/getting-started)
 
 ### `npm start`
 
