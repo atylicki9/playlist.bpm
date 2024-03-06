@@ -1,5 +1,5 @@
 import { Box, Text } from "@chakra-ui/react";
-import { Song } from "../submitButton";
+import { Song } from "../generateTrackListButton";
 
 interface SongListProps {
     songs: Song[];

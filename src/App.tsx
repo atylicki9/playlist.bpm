@@ -11,10 +11,10 @@ import {
 import { WholeNumberInput } from "./components/wholeNumberInput"
 import { SliderInput } from './components/sliderInput';
 import { InfoBox } from './components/infoBox';
-import { SubmitButton } from './components/submitButton';
+import { GenerateTrackListButton } from './components/generateTrackListButton';
 import MusicGenreSelector from './components/genreSelectionButtons';
 import { possibleGenres } from './common/constants';
-import { Song } from './components/submitButton';
+import { Song } from './components/generateTrackListButton';
 import SongList from './components/trackList';
 import { TextInput } from './components/textInput';
 import GeneratePlaylistButton from './components/generatePlaylistButton';
@@ -96,7 +96,7 @@ export const App: React.FC = () => {
             />
             <SliderInput title={"Tempo (BPM)"} setValue={setTempo} />
             <MusicGenreSelector genres={possibleGenres} setValue={setGenres} />
-            <SubmitButton
+            <GenerateTrackListButton
               numberOfSongs={numberOfSongs}
               tempo={tempo}
               genres={genres}

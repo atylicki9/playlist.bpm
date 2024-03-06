@@ -11,14 +11,14 @@ export interface Song {
   album: string;
 }
 
-interface SubmitButtonProps{
+interface GenerateTrackListButtonProps{
   numberOfSongs: number;
   tempo: number;
   genres: string[];
   setValue: ((songs: any) => void);
 }
 
-const callPlaylistApi = (numberOfSongs: number, tempo: number, genres: string[], setValue: ((songs: any) => void)) => {
+const callTracksApi = (numberOfSongs: number, tempo: number, genres: string[], setValue: ((songs: any) => void)) => {
   axios.post(API_TRACKS_ENDPOINT, {
     numberOfSongs: numberOfSongs,
     tempo: tempo, 
@@ -37,9 +37,9 @@ const callPlaylistApi = (numberOfSongs: number, tempo: number, genres: string[],
   });
 }
 
-export const SubmitButton: React.FC<SubmitButtonProps> = ({numberOfSongs, tempo, genres, setValue}) => {
+export const GenerateTrackListButton: React.FC<GenerateTrackListButtonProps> = ({numberOfSongs, tempo, genres, setValue}) => {
   return (
-    <Button onClick={e => callPlaylistApi(numberOfSongs, tempo, genres, setValue)}>
+    <Button onClick={e => callTracksApi(numberOfSongs, tempo, genres, setValue)}>
       <h1>Submit</h1>
     </Button>
   );

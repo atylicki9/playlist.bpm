@@ -1,5 +1,5 @@
 import { Button, useToast } from "@chakra-ui/react";
-import { Song } from "../submitButton";
+import { Song } from "../generateTrackListButton";
 import axios from "axios";
 import { API_CREATE_PLAYLISTS_ENDPOINT, API_ADD_TRACKS_TO_PLAYLISTS_ENDPOINT} from "../../common/constants";
 
