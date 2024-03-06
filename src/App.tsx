@@ -7,7 +7,6 @@ import {
   Grid,
   extendTheme,
   Heading,
-  Center,
 } from "@chakra-ui/react"
 import { WholeNumberInput } from "./components/wholeNumberInput"
 import { SliderInput } from './components/sliderInput';
@@ -20,6 +19,7 @@ import SongList from './components/trackList';
 import { TextInput } from './components/textInput';
 import GeneratePlaylistButton from './components/generatePlaylistButton';
 import getAuthInfo, { getAccessTokenFromCode } from './utility/authUtility';
+import {getUserInfo } from './utility/userInfoUtility';
 
 const theme = extendTheme({
   colors: {
@@ -49,6 +49,7 @@ export const App: React.FC = () => {
   const [genres, setGenres]= useState([] as string[])
   const [songs, setSongs] = useState([] as Song[])
   const [accessToken, setAccessToken] = useState("")
+  const [currentUserId, setCurrentUserId] = useState("")
 
   const handleSpotifyConnect = () => {
     getAuthInfo();
@@ -63,8 +64,15 @@ export const App: React.FC = () => {
     }
     else {
       setAccessToken(localStorage.getItem("access_token") || "");
+      getUserInfo().then((id) => {
+        console.log(id);
+        setCurrentUserId(id);
+      }).catch((error) => {
+        console.log(error);
+        localStorage.removeItem("access_token");
+      });
     }
-  }, []);
+  });
 
   return (
     <ChakraProvider theme={theme}>
@@ -95,7 +103,7 @@ export const App: React.FC = () => {
               setValue={setSongs}
             />
             <SongList songs={songs} />
-            <GeneratePlaylistButton playlistName={playlistName} songs={songs} />
+            <GeneratePlaylistButton playlistName={playlistName} songs={songs} userId ={currentUserId} />
           </VStack>
         )}
       </Grid>

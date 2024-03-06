@@ -5,7 +5,7 @@ const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
 
 export default async function getAuthInfo() {
-    if (!code) {
+    if (!code || !localStorage.getItem("access_token")) {
         console.log("Redirecting to Spotify authorization page...");
         redirectToAuthCodeFlow(clientId)
     } 
@@ -15,7 +15,10 @@ export async function getAccessTokenFromCode() {
     if (code)
     {
         await getAccessToken(clientId, code!); 
-        document.location.reload(); // reload once token is received.
+        if (localStorage.getItem("access_token"))
+        {
+            document.location.reload();
+        }
     }
 }
 

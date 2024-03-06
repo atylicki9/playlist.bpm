@@ -9,6 +9,23 @@ api = Flask(__name__)
 # in backend directory: source env/bin/activate
 # then enter flask run and navigate to api 
 
+@api.route('/userInfo', methods=['POST'])
+@cross_origin(origin='*')
+def get_user_info():
+    headers = {
+        'Authorization': 'Bearer ' + request.json['token'],
+        'Content-Type': 'application/json'
+    }
+
+    response = requests.get('https://api.spotify.com/v1/me', headers=headers)
+    if response.status_code == 200:
+        user_info = response.json()
+        print(user_info)
+        return jsonify({'userInfo':user_info}), 200
+    else:
+        abort(response.status_code)
+
+
 @api.route('/tracks', methods = ['POST'])
 @cross_origin(origin='*')
 def tracks():
@@ -49,7 +66,7 @@ def createPlaylist():
         'public': False
     }
     print(playlistParams)
-    response = requests.post('https://api.spotify.com/v1/users/31fesszlc4yms6y33oobjdr5ubam/playlists',  json=playlistParams, headers=headers )
+    response = requests.post(f'https://api.spotify.com/v1/users/{request.json['userId']}playlists',  json=playlistParams, headers=headers )
 
     if response.status_code == 200:
         response = response.json()       
