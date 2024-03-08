@@ -53,7 +53,6 @@ export const App: React.FC = () => {
 
   const handleSpotifyConnect = () => {
     getAuthInfo();
-
   } 
   
   useEffect(() => {
@@ -72,7 +71,7 @@ export const App: React.FC = () => {
         localStorage.removeItem("access_token");
       });
     }
-  });
+  }, []);
 
   return (
     <ChakraProvider theme={theme}>
